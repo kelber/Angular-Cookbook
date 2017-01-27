@@ -34,7 +34,7 @@ constructor(private translate: TranslateService) {
 ```
 import { TranslateModule } from 'ng2-translate';
 
-+ imports [ TranslateModule.forRoot()  ]
+//  TranslateModule.forRoot()  
 
 ```
 
@@ -45,13 +45,13 @@ Create folder i18n
   + assets
   + environments
   + **i18n** 
-  ++ pt.json
-  ++ en.json
-  ++ es.json
+     ++ pt.json
+     ++ en.json
+     ++ es.json
 
 
 ##### en.json ( Example ) 
-ps: "Navbar" is to use in {{ 'Navbar.something' | translate }}
+ps: "Navbar" is to use in {{ 'Navbar.Langagues.Portuguese' | translate }}
 
 ```
 {
@@ -125,7 +125,7 @@ import { MissingTranslationHandler , MissingTranslationHandlerParams } from
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
   handle( params: MissingTranslationHandlerParams ) {
-    return 'Traducao nao realizada para ' + params.key;
+    return 'Translate not work  ' + params.key;
   }
 
 }   
