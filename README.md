@@ -15,46 +15,4 @@
   + other's
   + try another 
 
-
-```
-  sudo apt-get udpate
-  xxxxxxxxxxxxxxxxxx
-  xxxxxxxxxxxxxxxxxxx
-
-
-```
-
-
-
-
-<p> sdfiadsfadsfdsfdsafadsiuofsafioashfasfhadsfasfds
-sdfadsfasdfadsfadsf
-adsfasfsafasfads
-sadfdsafsf
-afasfdsaf
-fadsfasdf
-fadsfadsfads
-sadffasdf
-adfsfadsf
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-fadsfads
-[ create an anchor](#Angular2 )
+[ create an anchor](#ng2-translate )
