@@ -1,4 +1,4 @@
-# Angular2 - Cookbook
+Angular2 - Cookbook
   Welcome to my notes of the Angular2 - Framework.
 
 - Index
