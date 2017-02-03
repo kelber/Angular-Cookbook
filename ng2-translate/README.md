@@ -116,7 +116,7 @@ Pages Schema
 
 ```
 
-### Opcional Mode
+### Opcional Mode  - Show a error message in the html template
 
 missingtemplate.component.ts
 ```

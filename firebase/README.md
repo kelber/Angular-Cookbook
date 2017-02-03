@@ -34,11 +34,11 @@ ps: See in the firebase ( WEB )
 ```
 
  export const firebaseConfig = {
-     apiKey: "AIzaSyAy9mjhz3tB-loI3crIMYPGkUodjfauXDM",
-     authDomain: "loianekk.firebaseapp.com",
-     databaseURL: "https://loianekk.firebaseio.com",
-     storageBucket: "loianekk.appspot.com",
-     messagingSenderId: "698017949259"
+     apiKey: " xxxxxxxxxxxxxxx ",
+     authDomain: " xxxxxxxxxxxxxxxxxxx ",
+     databaseURL: " xxxxxxxxxxxxxxxxxx  ",
+     storageBucket: " xxxxxxxxxxxxxxxx ",
+     messagingSenderId: " xxxxxxxxxxx "
    };
      firebase.initializeApp(firebaseConfig);
 
