@@ -40,7 +40,7 @@ Add this path in the **styles** array.
 "styles": [
   "../node_modules/materialize-css/dist/css/materialize.css",
   "styles.css"
-], 
+],
 ```
 
 Add this paths in the **scripts** array.
@@ -58,18 +58,16 @@ Add this paths in the **scripts** array.
 
 
 ##### app.module.ts
-Add this 3 lines and declare MaterializeModule in the @NgModule
+Add and declare MaterializeModule in the @NgModule
 
-```
+```js
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-// Materialize  
-import 'materialize-css';
-import 'angular2-materialize';
+
 import { MaterializeModule } from 'angular2-materialize';
 
 
@@ -93,8 +91,15 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ```
-Note:  import 'materialize-css' **before**
-       import 'angular2-materialize';
+
+Note: Conflicts **if**  you import this 2 lines below ....
+// Materialize  
+import 'materialize-css';
+import 'angular2-materialize';
+
+Note2: **if**
+ import 'materialize-css' **before**
+ import 'angular2-materialize';
 
 
 
@@ -111,21 +116,26 @@ In the index.html add the CDN of google fonts and material icons
 
 ### Using materialize in the components
 
-Example: in the  home.component.ts for using Javascript **Parallax**
+Example: in the  home.component.ts for using Javascript **Parallax**, **DropDown** and **SideNav**
 
 
-```
+```js
 import { Component, OnInit } from '@angular/core';
 
 // declare
 declare var $: any
 
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
 // initialization
-$('.parallax').parallax();
+
+      $('.button-collapse').sideNav();
+      $('.dropdown-button').dropdown();
+      $('.parallax').parallax();
+
+
 
   }
 
