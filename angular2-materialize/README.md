@@ -18,16 +18,17 @@ npm install materialize-css --save
 npm install angular2-materialize --save
 
 ```
-##### jQuery is Required
+##### jQuery **Required**  and HammerJS
 ```
 npm install jquery@^2.2.4 --save
+npm install hammerjs --save
 ```
 
 
 ### Configuration
 
 ##### angular-cli.json
-Add this line in the styles array.
+Add this path in the styles array.
 
 "../node_modules/materialize-css/dist/css/materialize.css",
 
@@ -40,7 +41,7 @@ Add this line in the styles array.
 
 
 ##### app.module.ts
-Add this 3 lines and declare in the @NgModule
+Add this 3 lines and declare MaterializeModule in the @NgModule
 
 ```
 
@@ -65,17 +66,18 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpModule
 
  // Materialize  
-   MaterializeModule
+   ,MaterializeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
-Note:  import 'materialize-css' **before** import 'angular2-materialize';
+Note:  import 'materialize-css' **before**
+       import 'angular2-materialize';
 
 
 
@@ -112,7 +114,8 @@ $('.parallax').parallax();
 
 }
 ```
-In this site have the code of **initialization** the jQuery functions like:
+Visit: http://materializecss.com  
+and take  **initialization** the jQuery functions like:
 
  $('.parallax').parallax();
 
