@@ -28,7 +28,7 @@ npm install hammerjs --save
 ### Configuration
 
 ##### angular-cli.json
-Add this path in the styles array.
+Add this path in the **styles** array.
 
 "../node_modules/materialize-css/dist/css/materialize.css",
 
@@ -36,7 +36,20 @@ Add this path in the styles array.
 "styles": [
   "../node_modules/materialize-css/dist/css/materialize.css",
   "styles.css"
-]
+], 
+```
+
+Add this paths in the **scripts** array.
+
+```
+"scripts": [
+      "../node_modules/jquery/dist/jquery.js",
+      "../node_modules/hammerjs/hammer.js",
+      "../node_modules/materialize-css/dist/js/materialize.js"
+],
+
+
+
 ```
 
 
