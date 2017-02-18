@@ -121,8 +121,9 @@ and take  **initialization** the jQuery functions like:
 
 
 #### Oficial angular2-materialize site:
-https://www.npmjs.com/package/angular2-materialize
+### https://www.npmjs.com/package/angular2-materialize
 
 
 
-#### Oficial materializecss site:  http://materializecss.com
+#### Oficial materializecss site:
+### http://materializecss.com
