@@ -1,5 +1,5 @@
 # angular2-materialize
-  How to install this library using <strong> @angular/cli </strong>  
+  How to install this library using **@angular/cli**
 
 
 ### Updated -  February 2017
@@ -26,17 +26,19 @@ npm install jquery@^2.2.4 --save
 
 ### Configuration
 
-In the angular-cli.json file add this line in the styles[] array
+##### angular-cli.json
+Add this line in the styles array.
 
 ```
 "styles": [
-<strong>  "../node_modules/materialize-css/dist/css/materialize.css",</strong>
+** "../node_modules/materialize-css/dist/css/materialize.css",**
 "styles.css"
 ]
 ```
 
-In the /app folder
+
 ##### app.module.ts
+Add this 3 lines.
 
 ```
 
@@ -45,11 +47,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-<strong>
+**
 import 'materialize-css';
 import 'angular2-materialize';
 import { MaterializeModule } from 'angular2-materialize';
-</strong>
+**
 
 
 import { AppComponent } from './app.component';
@@ -63,14 +65,16 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-  <strong>MaterializeModule</strong>
+  **MaterializeModule**
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
-Note:  import 'materialize-css' <strong>before</strong> import 'angular2-materialize';
+Note:  import 'materialize-css' **before** import 'angular2-materialize';
+
+
 
 
 
@@ -85,26 +89,27 @@ In the index.html add the CDN of google fonts and material icons
 
 ### Using materialize in the components
 
-Example: in the  home.component.ts for using Javascript <strong>Parallax</strong>
+Example: in the  home.component.ts for using Javascript **Parallax**
 
 ```
 import { Component, <strong>OnInit</strong> } from '@angular/core';
 
-<strong>declare var $: any; </strong>
+** declare var $: any; **
 
 export class HomeComponent implements OnInit{
 
   ngOnInit() {
 
-    <strong> $('.parallax').parallax();</strong>
+    **$('.parallax').parallax();**
 
   }
 
 }
 ```
 
-#### In the  http://materializecss.com/ have the code of **initialization** the jQuery functions like:  $('.parallax').parallax();
+#### Oficial materializecss site:  http://materializecss.com
+In this site have the code of **initialization** the jQuery functions like:  $('.parallax').parallax();
 
 
-#### Oficial angular2-materialize:
+#### Oficial angular2-materialize site:
 https://www.npmjs.com/package/angular2-materialize
