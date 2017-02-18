@@ -28,12 +28,13 @@ npm install jquery@^2.2.4 --save
 
 ##### angular-cli.json
 Add this line in the styles array.
+
 "../node_modules/materialize-css/dist/css/materialize.css",
 
 ```
 "styles": [
-"../node_modules/materialize-css/dist/css/materialize.css",
-"styles.css"
+  "../node_modules/materialize-css/dist/css/materialize.css",
+  "styles.css"
 ]
 ```
 
@@ -48,6 +49,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Materialize  
 import 'materialize-css';
 import 'angular2-materialize';
 import { MaterializeModule } from 'angular2-materialize';
@@ -64,7 +66,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-  **MaterializeModule**
+
+ // Materialize  
+   MaterializeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -89,28 +93,33 @@ In the index.html add the CDN of google fonts and material icons
 ### Using materialize in the components
 
 Example: in the  home.component.ts for using Javascript **Parallax**
-\\ declare var $: any;
-\\ use Jquery initialization
+
 
 ```
 import { Component, OnInit } from '@angular/core';
 
+// declare
 declare var $: any
 
 export class HomeComponent implements OnInit{
 
   ngOnInit() {
 
-    $('.parallax').parallax();
+// initialization
+$('.parallax').parallax();
 
   }
 
 }
 ```
-In this site have the code of **initialization** the jQuery functions like:  $('.parallax').parallax();
+In this site have the code of **initialization** the jQuery functions like:
 
+ $('.parallax').parallax();
 
-#### Oficial materializecss site:  http://materializecss.com
 
 #### Oficial angular2-materialize site:
 https://www.npmjs.com/package/angular2-materialize
+
+
+
+#### Oficial materializecss site:  http://materializecss.com
