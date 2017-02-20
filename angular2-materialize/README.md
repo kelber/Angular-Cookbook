@@ -58,7 +58,7 @@ Add this paths in the **scripts** array.
 
 
 ##### app.module.ts
-import and declare MaterializeModule in the @NgModule
+Import and declare MaterializeModule in the @NgModule
 
 ```js
 
@@ -66,7 +66,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 
 // Materialize
 import { MaterializeModule } from 'angular2-materialize';
@@ -99,23 +98,6 @@ export class AppModule { }
  > ng serve
 
 ```  
-
-
-
-Note: Conflicts **if**  you needed import this 2 lines below ....
-
-// Materialize  
-
-import 'materialize-css';
-import 'angular2-materialize';
-
-Note2: **if**
-
- import 'materialize-css' **before**
- import 'angular2-materialize';
-
-
-
 
 
 
@@ -167,3 +149,14 @@ and take  **initialization** the jQuery functions like:
 
 #### Oficial materializecss site:
 ### http://materializecss.com
+
+
+
+
+
+### **If**  your system asking to import 'materialize-css' in the app.module.ts
+
+```js
+import 'materialize-css';
+import 'angular2-materialize';
+```
