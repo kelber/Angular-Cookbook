@@ -24,7 +24,7 @@ ps: See in the firebase ( WEB )
 ```
   // firebase 
   import { AngularFireModule } from 'angularfire2';
-  import { firebaseConfig } from './environments/firebaseconfig.ts';
+  import { firebaseConfig } from './environments/firebaseconfig';
   declare var firebase: any;
   
   imports: [  AngularFireModule.initializeApp( firebaseConfig ) ] 
