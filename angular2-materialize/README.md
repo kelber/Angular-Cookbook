@@ -2,7 +2,7 @@
   How to install this library using **@angular/cli**
 
 
-### Updated -  February 2017
+### Updated -  March 2017
 
 
 - Index
@@ -104,7 +104,7 @@ export class AppModule { }
 ##### index.html
 In the index.html add the CDN of google fonts and material icons
 ```
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 ```
 
