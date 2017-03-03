@@ -160,3 +160,4 @@ and take  **initialization** the jQuery functions like:
 import 'materialize-css';
 import 'angular2-materialize';
 ```
+### **If**  error e.velocity appear's in your Browser console it will be resolve take off these 2 lines.
