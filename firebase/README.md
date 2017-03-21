@@ -45,4 +45,35 @@ ps: See in the firebase ( WEB )
 ```
 
 
+### How to Deploy
+
+First install the firebase-tools
+```
+sudo npm i -g firebase-tools
+``` 
+
+With --prod flag ( minify + uglify ) the application
+```
+ng build --prod
+```
+
+```
+ng build --env=prod
+``` 
+
+```
+firebase login
+```
+
+```
+firebase init 
+``` 
+dist
+y
+y
+
+
+
+
+
 
