@@ -67,12 +67,16 @@ firebase login
 
 ```
 firebase init 
+> dist
+> y
+> y
+// or overwrite ? N
 ``` 
-dist
-y
-y
 
-
+#### need help
+```
+firebase deploy --help
+``` 
 
 
 
