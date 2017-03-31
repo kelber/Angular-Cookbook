@@ -2,10 +2,119 @@
 
 #### Ref: https://www.npmjs.com/package/ng2-translate
 
+
+### updated in Abril 2017 
+### @angular v4
+
 Install
 ```
   sudo npm i ng2-translate --save
 ```
+
+
+##### app.module.ts
+
+```js
+
+import { TranslateModule , TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
+
+// create this file. missingtemplate.component and import here 
+// to give a answer for the missing words...
+import {  MyMissingTranslationHandler } from './missingtemplate.component';
+
+// create this function and redirect to /src/i18n or your preference folder
+export function createTranslateLoader(http: Http) {
+return new TranslateStaticLoader(http, './src/i18n', '.json');
+    }
+
+
+imports: [
+
+     TranslateModule.forRoot({
+
+    provide: TranslateLoader,
+    useFactory: (createTranslateLoader) ,
+    deps: [Http ]
+    })
+
+
+];
+``` 
+
+#### create this file  missingtemplate.component.ts
+
+it will give a answer for missing words...
+
+```js
+import { MissingTranslationHandler , MissingTranslationHandlerParams } from
+'ng2-translate';
+
+export class MyMissingTranslationHandler implements MissingTranslationHandler {
+  handle( params: MissingTranslationHandlerParams ) {
+    return 'This works is not translated yet ' + params.key;
+  }
+
+  }
+
+``` 
+
+##### app.component.ts
+
+
+```js
+import { TranslateService } from 'ng2-translate';
+
+
+   constructor(private translate: TranslateService) {
+  translate.addLangs(["en", "fr"]);
+  translate.setDefaultLang('en');
+
+  let browserLang = translate.getBrowserLang();
+  translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+  }
+
+```
+
+##### model.json
+
+```json
+
+{
+    "Home": {
+      "mainTitle": "This is the main title",
+      "secondTitle": "This is the  2" 
+    } 
+}
+
+``` 
+
+##### in the html 
+
+```html
+<div>
+  <label>
+    {{ 'Home.mainTitle' | translate }}
+    <select #langSelect (change)="translate.use(langSelect.value)">
+      <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+    </select>
+  </label>
+</div>
+
+<h2>{{ 'Home.mainTitle' | translate }}</h2>
+
+
+
+
+``` 
+
+
+
+
+
+
+
+
+###  old schema below
 
 ##### app.component.ts
 PS: I make it passing in navbar.component too.
@@ -136,6 +245,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 ##### app.component.ts
 
 ```
+
 // translate
 import { TranslateModule , TranslateService, MissingTranslationHandler } from 'ng2-translate';
 import { MyMissingTranslationHandler } from '../missingtemplate.component';
