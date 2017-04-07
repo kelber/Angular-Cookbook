@@ -59,7 +59,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 ``` 
 
 ##### app.component.ts
-
+Note: I put this code in the navbar.component.ts to apply in all application too.
 
 ```js
 import { TranslateService } from 'ng2-translate';
@@ -88,7 +88,7 @@ import { TranslateService } from 'ng2-translate';
 
 ``` 
 
-##### in the html 
+##### in the html for example navbar.component.html
 
 ```html
 <div>
@@ -101,9 +101,6 @@ import { TranslateService } from 'ng2-translate';
 </div>
 
 <h2>{{ 'Home.mainTitle' | translate }}</h2>
-
-
-
 
 ``` 
 
