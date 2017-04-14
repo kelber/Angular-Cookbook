@@ -24,7 +24,7 @@ ps: See in the firebase ( WEB )
 ```
   // firebase 
   import { AngularFireModule } from 'angularfire2';
-  import { firebaseConfig } from './environments/firebaseconfig';
+  import { firebaseConfig } from '../environments/firebaseconfig';
   declare var firebase: any;
   
   imports: [  AngularFireModule.initializeApp( firebaseConfig ) ] 
@@ -34,11 +34,11 @@ ps: See in the firebase ( WEB )
 ```
 
  export const firebaseConfig = {
-     apiKey: " xxxxxxxxxxxxxxx ",
-     authDomain: " xxxxxxxxxxxxxxxxxxx ",
-     databaseURL: " xxxxxxxxxxxxxxxxxx  ",
-     storageBucket: " xxxxxxxxxxxxxxxx ",
-     messagingSenderId: " xxxxxxxxxxx "
+     apiKey: ' Use single quotes here...', 
+     authDomain: ' xxxxxxxxxxxxxxxxxxx ', 
+     databaseURL: ' xxxxxxxxxxxxxxxxxx  ', 
+     storageBucket: ' xxxxxxxxxxxxxxxx ',
+     messagingSenderId: ' xxxxxxxxxxx ' 
    };
      firebase.initializeApp(firebaseConfig);
 
@@ -51,15 +51,17 @@ First install the firebase-tools
 ```
 sudo npm i -g firebase-tools
 ``` 
-
 With --prod flag ( minify + uglify ) the application
-```
-ng build --prod
-```
 
 ```
 ng build --env=prod
 ``` 
+
+# Deploy Steps 
+
+```
+ng build --prod
+```
 
 ```
 firebase login
@@ -69,9 +71,13 @@ firebase login
 firebase init 
 > dist
 > y
-> y
 // or overwrite ? N
+> y
 ``` 
+```
+firebase deploy 
+``` 
+
 
 #### need help
 ```

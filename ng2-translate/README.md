@@ -16,7 +16,7 @@ Install
 
 ```js
 
-import { TranslateModule , TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
+import { TranslateModule , TranslateStaticLoader, TranslateLoader, TranslateService } from 'ng2-translate';
 
 // create this file. missingtemplate.component and import here 
 // to give a answer for the missing words...
@@ -24,18 +24,19 @@ import {  MyMissingTranslationHandler } from './missingtemplate.component';
 
 // create this function and redirect to /src/i18n or your preference folder
 export function createTranslateLoader(http: Http) {
-return new TranslateStaticLoader(http, './src/i18n', '.json');
+return new TranslateStaticLoader(http, './assets/i18n', '.json');
     }
 
 
 imports: [
 
-     TranslateModule.forRoot({
+  TranslateModule.forRoot({
 
-    provide: TranslateLoader,
-    useFactory: (createTranslateLoader) ,
-    deps: [Http ]
-    })
+provide: TranslateLoader,
+// useFactory: (createTranslateLoader) ,
+useFactory: (http: Http) => new TranslateStaticLoader(http, './assets/i18n', '.json'), 
+deps: [Http]
+})
 
 
 ];
@@ -58,6 +59,18 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 
 ``` 
 
+Create folder i18n inside **/assets/i18n** 
+
+- src
+  + app
+  + environments
+  + assets/**i18n** 
+     ++ pt.json
+     ++ en.json
+     ++ es.json
+
+
+
 ##### app.component.ts
 Note: I put this code in the navbar.component.ts to apply in all application too.
 
@@ -66,7 +79,7 @@ import { TranslateService } from 'ng2-translate';
 
 
    constructor(private translate: TranslateService) {
-  translate.addLangs(["en", "fr"]);
+  translate.addLangs(['en', 'fr']);
   translate.setDefaultLang('en');
 
   let browserLang = translate.getBrowserLang();
@@ -111,7 +124,7 @@ import { TranslateService } from 'ng2-translate';
 
 
 
-###  old schema below
+#  old schema below
 
 ##### app.component.ts
 PS: I make it passing in navbar.component too.
@@ -120,12 +133,12 @@ PS: I make it passing in navbar.component too.
 import { TranslateService } from 'ng2-translate';
 
 constructor(private translate: TranslateService) {
-    translate.addLangs(["pt", "en" , "es", ]);
-    translate.setDefaultLang("pt");
+    translate.addLangs(['en', 'pt', 'es' ]);
+    translate.setDefaultLang('en');
     
     let browserlang = translate.getBrowserLang();
-    translate.use(browserlang.match( / pt|en|es / ) ? browserlang : "pt" )
-  // translate.use("pt"); // test
+    translate.use(browserlang.match( / pt|en|es / ) ? browserlang : 'en' )
+  // translate.use('pt'); // test
 }
 
 
@@ -144,13 +157,12 @@ import { TranslateModule } from 'ng2-translate';
 
 ```
 
-Create folder i18n
+Create folder i18n inside **/assets/i18n** 
 
 - src
   + app
-  + assets
   + environments
-  + **i18n** 
+  + assets/**i18n** 
      ++ pt.json
      ++ en.json
      ++ es.json
