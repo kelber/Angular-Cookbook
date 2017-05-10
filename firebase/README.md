@@ -13,15 +13,15 @@
   npm i firebase angularfire2 --save
 ```
 ##### index.html 
-ps: See in the firebase ( WEB )
-```
-  <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+ps: Take it in the firebase ( WEB )
+```html
+  <script src="https://www.gstatic.com/firebasejs/3.6.ksksksksks7/firebase.js"></script>
 ``` 
 
 
 
 ##### app.module.ts
-```
+```js
   // firebase 
   import { AngularFireModule } from 'angularfire2';
   import { firebaseConfig } from '../environments/firebaseconfig';
@@ -31,7 +31,7 @@ ps: See in the firebase ( WEB )
 ```
 
 ##### environments/firebaseconfig.ts
-```
+```js
 
  export const firebaseConfig = {
      apiKey: ' Use single quotes here...', 
