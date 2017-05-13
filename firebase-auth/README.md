@@ -2,6 +2,391 @@
 
 ### Updated -  May 2017
 
+#### angularfire2 V4
+https://github.com/angular/angularfire2
+
+
+
+
+### How to Install
+
+```
+  npm i firebase angularfire2 --save
+```
+
+##### index.html 
+ps: Take it in the firebase ( WEB )
+```html
+  <script src="https://www.gstatic.com/firebasejs/3.6.ksksksksks7/firebase.js"></script>
+``` 
+
+##### app.module.ts
+```js
+
+  // firebase 
+  import { AngularFireModule } from 'angularfire2';
+  // firebase database
+  import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+  // firebase auth system
+  import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+  import { firebaseConfig } from '../environments/firebaseconfig';
+
+  import * as firebase from 'firebase/app';
+
+  
+  imports: [  AngularFireModule.initializeApp( firebaseConfig.firebase ) ] 
+  // Or use like this.
+  imports: [  AngularFireModule.initializeApp( firebaseConfig.firebase, 'my-app-name' ) ] 
+  
+```
+
+
+
+##### environments/firebaseconfig.ts
+```js
+
+ export const firebaseConfig = {
+     apiKey: ' Use single quotes here...', 
+     authDomain: ' xxxxxxxxxxxxxxxxxxx ', 
+     databaseURL: ' xxxxxxxxxxxxxxxxxx  ', 
+     storageBucket: ' xxxxxxxxxxxxxxxx ',
+     messagingSenderId: ' xxxxxxxxxxx ' 
+   };
+     firebase.initializeApp(firebaseConfig);
+
+```
+
+### Components tree
+
+```
+ng g component auth
+```
+inside the auth component create the rest of components
+cd src/app/auth/
+
+``` 
+ng g c signup -> or register. Sign Up a new user
+
+ng g c email  -> login with email
+
+ng g c login  -> welcome page with login with email , login with facebook , login with google ...
+
+```
+
+
+### SIGNUP
+
+#### signup.html
+```html
+    <form #formRegister='ngForm'>
+       <div class="input-field col s12">
+         <input type="email" class="validate" name="email" (ngModel)="email" required>
+         <label for="email" align="left">Email</label>
+       </div>
+       <div class="input-field col s12">
+         <input id="Password" type="password" class="validate" name="password" (ngModel)="password" required>
+         <label for="Password"  align="left">Password</label>
+       </div>
+       <p>
+         <input type="checkbox" id="test5" required/>
+         <label for="test5"><a href="#modal1">I agree to the terms</a></label>
+       </p>
+       <br>
+          <a type="submit" class="waves-effect waves-light btn col s12 m12 l12" *ngIf="formRegister.valid" (click)="onSubmit(formRegister)" >Register <i class="material-icons">send</i></a>
+       <br>
+       <br>
+    </form>
+```
+
+
+#### signup.component.ts
+```js
+
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+import { Observable } from 'rxjs/Observable';
+
+
+    isLoggedIn: boolean = false;
+    state: string = '';
+    error: any;
+    okMessage: any;
+    email: any;
+    password: string;
+    formRegister: FormGroup;
+
+    constructor(private afAuth: AngularFireAuth,private router: Router,private fb: FormBuilder) {
+          // FormRegister
+              this.formRegister = this.fb.group({
+                email: this.email,
+                password: this.password
+                });
+     }
+
+  // Register using Email and Pass
+  onSubmit(formRegister) {
+    if (formRegister.valid) {
+      console.log(formRegister.value);
+      this.afAuth.auth.createUserWithEmailAndPassword(formRegister.value.email,formRegister.value.password
+      ).then(
+        (success) => {
+          console.log(success);
+          this.router.navigate(['/dashboard']);
+        }).catch(
+        (err) => {
+          this.error = err;
+        });
+    }
+    }
+
+``` 
+Now that we can create new user's. Let's go to Email -> Login with Email.
+
+ps: Go to console.firebase and "Enable" the email option. Check the Firebase "Rules".
+
+
+### EMAIL
+
+#### email.component.html
+```html
+ <form [formGroup]="formLogin" >
+    <div class="input-field col s12">
+      <input type="email" class="validate" name="email" formControlName="email" required>
+      <label for="email" align="left">Email</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="Password" type="password" class="validate" name="password" formControlName="password" required>
+      <label for="Password"  align="left">Password</label>
+    </div>
+    <div class="input-field col s12">
+       <a type="submit" class="waves-effect waves-light btn col s12 m12 l12" *ngIf="formLogin.valid"(click)="onSubmit(formLogin)">Login</a>
+       <br>
+       <br>
+       <br>
+       <br>
+    </div>
+  </form>
+``` 
+
+
+#### email.component.ts
+```js
+
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+import { Observable } from 'rxjs/Observable';
+
+
+    isLoggedIn: boolean = false;
+    state: string = '';
+    error: any;
+    okMessage: any;
+    email: any;
+    password: string;
+    formLogin: FormGroup;
+
+    constructor(private afAuth: AngularFireAuth,private router: Router,private fb: FormBuilder) {
+          // FormLogin
+              this.formLogin = this.fb.group({
+                email: this.email,
+                password: this.password
+                });
+     }
+
+ 
+ // Login with Email V4
+  onSubmit(formLogin) {
+    if(formLogin.valid) {
+      console.log(formLogin.value);
+       this.afAuth.auth.signInWithEmailAndPassword(formLogin.value.email, formLogin.value.password
+      ).then(
+        (success) => {
+        console.log(success);
+        this.router.navigate(['/dashboard']);
+      }).catch(
+        (err) => {
+        console.log(err);
+        this.error = err;
+      });
+    }
+   }
+
+```
+
+### LOGIN Page 
+
+#### login.component.html
+
+```html
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Email Details</h4>
+    <p>If you have a FACEBOOK account and your email is from google. ex. @gmail.com . <br> Try to login using google </p>
+  </div>
+</div>
+
+<div class="row">
+  <br>
+  <br>
+  <div class="col m4 l3"></div>
+  <div class="col s12 m6 l6 card blue-grey lighten-3">
+    <div class="blue-grey lighten-3">
+      <br>
+      <a class="waves-effect waves-light white-text" [routerLink]="['/']">Back to Home </a>
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light right white-text" href="#modal1"><i class="material-icons">info_outline</i></a>
+      <div class="center">
+        <h3 class="white-text">Login</h3>
+        <a class="waves-effect waves-light white-text" [routerLink]="['/auth/signup']">Don't have a account ? click here </a>
+      </div>
+      <!-- <span class="card-title">Card Title</span> -->
+      <!-- <img id="lock" src="../assets/lock.svg" alt="lock"  width="55"> -->
+      <div align="center">
+        <span class="error" *ngIf="error">{{ error }}</span>
+      </div>
+    </div>
+    <div class="input-field col s12">
+      <br>
+      <br>
+      <a type="submit" class="waves-effect waves-light btn col s12 m12 l12 grey lighten-1 z-depth-2" [routerLink]="['/auth/email']">Login Email</a>
+      <br>
+      <br>
+      <br>
+      <a type="submit" class="waves-effect waves-light btn col s12 m12 l12 red z-depth-4" (click)="loginG()">Login Google</a>
+      <br>
+      <br>
+      <br>
+      <a type="submit" class="waves-effect waves-light btn col s12 m12 l12 blue darken-3 z-depth-2" (click)="signInWithFacebook()">Login Facebook</a>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+
+``` 
+
+#### login.component.ts
+```js
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+import { Observable } from 'rxjs/Observable';
+
+
+    isLoggedIn: boolean = false;
+    state: string = '';
+    error: any;
+    okMessage: any;
+    email: any;
+    password: string;
+    formLogin: FormGroup;
+
+    constructor(private afAuth: AngularFireAuth,private router: Router,private fb: FormBuilder) { }
+
+   // Anonymosyly Login  --> Enable in firebase login method too.
+   anonymously() {
+    this.afAuth.auth.signInAnonymously();
+    this.router.navigate(['/dashboard']);
+    console.log('auth anony');
+  }
+
+  // Login Facebook
+ signInWithFacebook() {
+    this.afAuth.auth.signInWithPopup( new firebase.auth.FacebookAuthProvider())
+    .then(
+         (success) => {
+         this.router.navigate(['/dashboard']);
+         }).catch(
+           (err) => {
+             this.error = err;
+           });
+  }
+
+```
+
+
+
+
+### COMPONENTS Where you will use the auth system.
+
+```js
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+
+export class MEUCOMPONENT {
+
+  user: Observable<firebase.User>;
+  email: any;
+  displayName: string;
+  uid: any;
+  photo: any;
+
+  constructor(public router: Router,public afAuth: AngularFireAuth) { 
+     
+        afAuth.authState.subscribe(user => {
+          if (!user) {
+            this.displayName = null;        
+            return;
+          }
+          this.displayName = user.displayName;      
+          this.email = user.email;
+          this.uid = user.uid;
+          this.photo = user.photoURL;
+        });
+
+
+  }
+
+ 
+ signOut() {
+    this.afAuth.auth.signOut();
+    this.router.navigate(['/']);
+    console.log('Logout');
+  }
+
+  
+
+}
+
+```  
+
+
+
+#### Check CanActivate methods in the end...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Old Methods below
+
 - Index
   + How to 
   + Files
@@ -59,11 +444,15 @@ ng g c email  -> login with email
 ```
 
 In the src/app/auth
+
 Create 2 new files.
 
 auth.module.ts
+
 auth.routing.ts
+
 auth.service.ts
+
 auth-guard.service.ts
 
 
@@ -373,12 +762,7 @@ export class AuthService {
 ``` 
 
 ### Login Page
-Apresentation to user how to login
-Login with Email
-Login with Facebook
-Login with Google or Anonymous
 
-Create a User
 
 #### login.component.html
 ```html
@@ -435,7 +819,6 @@ Create a User
 
 
 
-!!!! VER SE TEM MAIS AKI EM BAIXO 
 
 
 #### login.component.ts
