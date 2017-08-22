@@ -36,6 +36,8 @@ Paste this lines in your index.html
 
 ``` 
 
+### Put FontAwsome ICONS
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 ### Using the components
 

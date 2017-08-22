@@ -30,7 +30,27 @@ ps: Take it in the firebase ( WEB )
   imports: [  AngularFireModule.initializeApp( firebaseConfig ) ] 
 ```
 
-##### environments/firebaseconfig.ts
+
+##### environments/ NEW method
+In the 2 environments files add what you want.
+```js
+
+export const environment = {
+  production: false,
+  firebaseConfig: {
+     apiKey: ' Use single quotes here...', 
+     authDomain: ' xxxxxxxxxxxxxxxxxxx ', 
+     databaseURL: ' xxxxxxxxxxxxxxxxxx  ', 
+     storageBucket: ' xxxxxxxxxxxxxxxx ',
+     messagingSenderId: ' xxxxxxxxxxx ' 
+  }
+  MY_API: 'api info'
+};
+``` 
+
+
+
+##### environments/firebaseconfig.ts  OLD method
 ```js
 
  export const firebaseConfig = {
