@@ -102,7 +102,7 @@ export class SonComponent implements OnInit, AfterContentInit {
  
 
  
-  optional ? @ContentChild(NgModel) model: NgModel -->
+  /** optional?   @ContentChild(NgModel) model: NgModel  **/
  @ContentChild(FormControlName) control: FormControlName
 
 
