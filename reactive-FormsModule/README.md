@@ -1,6 +1,244 @@
 
 # Reactive FormsModule - Model Driven
 
+
+### Updated September 2017
+
+import the FormsModule, ReactiveFormsModule in the SharedModule
+
+```js
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+```
+
+Ex:  |-reports
+        |-form-input
+        |-form-radio
+        |-form-select
+
+### Model for use Input Fields
+
+#### Father Component
+Pass all the fields to Son Component and in the son have the HTML tags and details...
+
+```html
+<p> {{ evaluationForm?.value | json }} </p>
+
+<form [formGroup]="evaluationForm" novalidate>
+
+
+      <app-form-input label="Vehicle"
+                      errorMessage="Mandatory field">
+                      
+
+            <!--in the son component will replace for the <ng-content></ng-content> -->
+              <input type="text" class="form-control"
+                    placeholder="Vehicle"
+                    formControlName="vehicle">
+                    
+
+      </app-form-input>
+ </form>
+ 
+  <button type="submit" class="btn btn-primary btn-block"
+      [disabled]="!evaluationForm.valid"
+      (click)="onSubmit(evaluationForm)">Submit</button>
+```
+
+
+
+```js
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+ evaluationForm: FormGroup;
+
+ ngOnInit() {
+    this.evaluationForm = this.fb.group({
+        vehicle: [ '',Validators.required ],
+     
+    })
+
+ }
+
+```
+
+
+#### Son Component
+Receive the informations and here have the HTML tags and details...
+
+```html
+
+  <div class="form-group" >
+    <div class="has-success" [class.has-success]="hasSuccess()">
+    <label>{{ label }} </label>
+    
+        <!--here receive the <input />-->
+        <ng-content></ng-content>  
+        
+
+    <div *ngIf="hasSuccess()" class="form-control-feedback">Ok</div>
+    <small *ngIf="hasError()" class="form-text text-muted">{{ errorMessage }}</small>
+    </div>
+  </div>
+
+``` 
+
+```js
+import { Component, OnInit, Input, ContentChild, AfterContentInit } from '@angular/core';
+import { NgModel, FormControlName } from '@angular/forms';
+
+export class SonComponent implements OnInit, AfterContentInit {
+
+
+ input: any;
+ 
+ @Input() label: string;
+ @Input() errorMessage: string;
+ 
+
+ 
+ <!-- optional ? @ContentChild(NgModel) model: NgModel -->
+ @ContentChild(FormControlName) control: FormControlName
+
+
+  ngAfterContentInit() {
+    this.input = this.control
+     <!--this.input = this.model || this.control-->
+  }
+  
+
+  hasSuccess(): boolean{
+    return this.input.valid && (this.input.dirty || this.input.touched)
+  }
+  hasError() {
+    return this.input.invalid && ( this.input.dirty || this.input.touched )
+  }
+
+
+``` 
+
+
+
+### Model for use Select Fields ( radio, select, booleans )
+
+#### Father Component
+
+
+```js
+
+  paymentOptions: RadioOption[] = [
+    {label: 'Dinheiro', value: 'MON'},
+    {label: 'Cartão de Débito', value: 'DEB'},
+    {label: 'Cartão Refeição', value: 'REF'}
+  ]
+  
+   ngOnInit() {
+    this.evaluationForm = this.fb.group({
+        vehicle: [ '',Validators.required ],
+        paymentOption: this.fb.control( '', [Validators.required])
+    })
+
+``` 
+
+
+```html
+
+
+       <mt-radio [options]="paymentOptions" 
+                 formControlName="paymentOption">
+       </mt-radio>
+ 
+
+
+``` 
+
+#### Son Component
+
+```js
+
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms'
+
+import {RadioOption} from './radio-option.model'
+
+
+@Component({
+      <!--add -->  ,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(()=>RadioComponent),
+      multi: true
+    }
+  ]
+  
+
+  export class RadioComponent implements OnInit, ControlValueAccessor {
+
+  @Input() options: RadioOption[]
+
+  value: any
+  onChange: any
+
+      
+  setValue(value: any){
+    this.value = value
+    this.onChange(this.value)
+  }
+  
+  /** This code is from ControlValueAccessor  click with RightBtn and open this file.
+  
+/**
+   * Write a new value to the element.
+   */
+  writeValue(obj: any): void {
+    this.value = obj
+  }
+  /**
+   * Set the function to be called when the control receives a change event.
+   */
+  registerOnChange(fn: any): void {
+    this.onChange = fn
+  }
+  /**
+   * Set the function to be called when the control receives a touch event.
+   */
+  registerOnTouched(fn: any): void {}
+  /**
+   * This function is called when the control status changes to or from "DISABLED".
+   * Depending on the value, it will enable or disable the appropriate DOM element.
+   *
+   * @param isDisabled
+   */
+  setDisabledState?(isDisabled: boolean): void {}
+
+``` 
+
+```html
+
+<div *ngFor="let option of options">
+  <label>
+    <div (click)="setValue(option.value)" class="iradio_flat-red"             [class.checked]="option.value === value">
+    </div>
+    {{option.label}}
+  </label>
+</div>
+
+``` 
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+#### Reactive Forms - Model Driven May 2017
+
 Ref:
 https://scotch.io/tutorials/using-angular-2s-model-driven-forms-with-formgroup-and-formcontrol
 https://blog.thoughtram.io/angular/2016/06/22/model-driven-forms-in-angular-2.html

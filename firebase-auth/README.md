@@ -1,5 +1,50 @@
 # Firebase Authentication - Cookbook
 
+### Updated -  August 2017
+
+### How to Install
+
+```
+  npm i firebase angularfire2 --save
+```
+
+
+##### app.module.ts
+```js
+  // firebase auth system
+  // import * as firebase from 'firebase/app';
+  import { AngularFireAuthModule } from 'angularfire2/auth';
+  
+
+  imports: [  AngularFireModule.initializeApp( environment.firebase, 'my-app-name' ) ] 
+  
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Updated -  May 2017
 
 #### angularfire2 V4
