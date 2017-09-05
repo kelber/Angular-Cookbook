@@ -10,16 +10,21 @@ import the FormsModule, ReactiveFormsModule in the SharedModule
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 ```
 
-Ex:  |-reports
-        |-form-input
-        |-form-radio
-        |-form-select
+Ex:  |-reports <br>
+        |-form-input <br>
+        |-form-radio <br>
+        |-form-select <br>
 
-### Model for use Input Fields
+
+
+## Example - Input Fields
+
+
 
 #### Father Component
 Pass all the fields to Son Component and in the son have the HTML tags and details...
 
+father.html
 ```html
 <p> {{ evaluationForm?.value | json }} </p>
 
@@ -45,7 +50,7 @@ Pass all the fields to Son Component and in the son have the HTML tags and detai
 ```
 
 
-
+father.component.ts
 ```js
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -65,6 +70,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } 
 #### Son Component
 Receive the informations and here have the HTML tags and details...
 
+son.html
 ```html
 
   <div class="form-group" >
@@ -96,13 +102,13 @@ export class SonComponent implements OnInit, AfterContentInit {
  
 
  
- <!-- optional ? @ContentChild(NgModel) model: NgModel -->
+  optional ? @ContentChild(NgModel) model: NgModel -->
  @ContentChild(FormControlName) control: FormControlName
 
 
   ngAfterContentInit() {
     this.input = this.control
-     <!--this.input = this.model || this.control-->
+    /**  this.input = this.model || this.control **/
   }
   
 
@@ -117,12 +123,22 @@ export class SonComponent implements OnInit, AfterContentInit {
 ``` 
 
 
-
-### Model for use Select Fields ( radio, select, booleans )
+## Example for Select Fields ( radio, select, booleans )
 
 #### Father Component
 
+ father.html
+```html
 
+
+       <mt-radio [options]="paymentOptions" 
+                 formControlName="paymentOption">
+       </mt-radio>
+ 
+
+
+``` 
+father.component.ts
 ```js
 
   paymentOptions: RadioOption[] = [
@@ -140,19 +156,23 @@ export class SonComponent implements OnInit, AfterContentInit {
 ``` 
 
 
+#### Son Component
+
+son.html
 ```html
 
-
-       <mt-radio [options]="paymentOptions" 
-                 formControlName="paymentOption">
-       </mt-radio>
- 
-
+<div *ngFor="let option of options">
+  <label>
+    <div (click)="setValue(option.value)" class="iradio_flat-red"             [class.checked]="option.value === value">
+    </div>
+    {{option.label}}
+  </label>
+</div>
 
 ``` 
 
-#### Son Component
 
+son.component.ts
 ```js
 
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
@@ -162,7 +182,7 @@ import {RadioOption} from './radio-option.model'
 
 
 @Component({
-      <!--add -->  ,
+      /** add more **/  ,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -185,7 +205,7 @@ import {RadioOption} from './radio-option.model'
     this.onChange(this.value)
   }
   
-  /** This code is from ControlValueAccessor  click with RightBtn and open this file.
+/** This code is from ControlValueAccessor  click with RightBtn and open this file.
   
 /**
    * Write a new value to the element.
@@ -212,22 +232,6 @@ import {RadioOption} from './radio-option.model'
   setDisabledState?(isDisabled: boolean): void {}
 
 ``` 
-
-```html
-
-<div *ngFor="let option of options">
-  <label>
-    <div (click)="setValue(option.value)" class="iradio_flat-red"             [class.checked]="option.value === value">
-    </div>
-    {{option.label}}
-  </label>
-</div>
-
-``` 
-
-
-
-
 
 
 

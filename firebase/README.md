@@ -50,6 +50,16 @@ export const environment = {
 
 ``` 
 
+In the .services  files that will use the MY_API
+
+```js
+import { environments } from '../path';
+
+export const MY_API = environment.MY_API;
+
+``` 
+
+
 ### Old Method
 
 ##### app.module.ts
