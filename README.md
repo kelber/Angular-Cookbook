@@ -10,4 +10,8 @@ Example of what we do here.
 #### Github tricks:
 ```html
 https://github.com/WebDevStudios/CLI-Cheat-Sheet/blob/master/git-commands.md
+
+
+https://help.github.com/articles/basic-writing-and-formatting-syntax/
+
 ``` 

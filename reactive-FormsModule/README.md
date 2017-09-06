@@ -10,10 +10,12 @@ import the FormsModule, ReactiveFormsModule in the SharedModule
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 ```
 
-Ex:  |-reports <br>
-        |-form-input <br>
-        |-form-radio <br>
-        |-form-select <br>
+Estructure
+
+|-reports <br>
+--|-form-input <br>
+--|-form-radio <br>
+--|-form-select <br>
 
 
 
@@ -24,9 +26,9 @@ Ex:  |-reports <br>
 #### Father Component
 Pass all the fields to Son Component and in the son have the HTML tags and details...
 
-father.html
+**father.html**
 ```html
-<p> {{ evaluationForm?.value | json }} </p>
+<p> {{ evaluationForm?.value | json }} and {{ evaluationForm?.valid }} </p>
 
 <form [formGroup]="evaluationForm" novalidate>
 
@@ -34,14 +36,13 @@ father.html
       <app-form-input label="Vehicle"
                       errorMessage="Mandatory field">
                       
-
             <!--in the son component will replace for the <ng-content></ng-content> -->
               <input type="text" class="form-control"
                     placeholder="Vehicle"
                     formControlName="vehicle">
-                    
 
       </app-form-input>
+      
  </form>
  
   <button type="submit" class="btn btn-primary btn-block"
@@ -49,8 +50,7 @@ father.html
       (click)="onSubmit(evaluationForm)">Submit</button>
 ```
 
-
-father.component.ts
+**father.component.ts**
 ```js
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -70,7 +70,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } 
 #### Son Component
 Receive the informations and here have the HTML tags and details...
 
-son.html
+**son.html**
 ```html
 
   <div class="form-group" >
@@ -125,26 +125,37 @@ export class SonComponent implements OnInit, AfterContentInit {
 
 ## Example for Select Fields ( radio, select, booleans )
 
+
+Take it from angular.io documentation
+```html
+   <!--[ngValue]="brand" the Object You add all fields. -->
+    <select class="form-control" formControlName="brand" >
+        <label>Select the Brand</label>
+         <option *ngFor="let brand of brands" [ngValue]="brand.id"
+        >{{ brand?name }} </option>
+    </select>
+``` 
+
 #### Father Component
 
- father.html
+ **father.html**
 ```html
 
 
-       <mt-radio [options]="paymentOptions" 
+       <app-radio [options]="paymentOptions" 
                  formControlName="paymentOption">
-       </mt-radio>
+       </app-radio>
  
 
 
 ``` 
-father.component.ts
+**father.component.ts**
 ```js
 
   paymentOptions: RadioOption[] = [
-    {label: 'Dinheiro', value: 'MON'},
-    {label: 'Cartão de Débito', value: 'DEB'},
-    {label: 'Cartão Refeição', value: 'REF'}
+    {label: 'Money', value: 'MON'},
+    {label: 'Debit', value: 'DEB'},
+    {label: 'Credit', value: 'CRED'}
   ]
   
    ngOnInit() {
@@ -158,12 +169,14 @@ father.component.ts
 
 #### Son Component
 
-son.html
+**son.html**
 ```html
 
 <div *ngFor="let option of options">
   <label>
-    <div (click)="setValue(option.value)" class="iradio_flat-red"             [class.checked]="option.value === value">
+    <div class="iradio_flat-red" 
+         [class.checked]="option.value === value"
+         (click)="setValue(option.value)">
     </div>
     {{option.label}}
   </label>
@@ -172,7 +185,7 @@ son.html
 ``` 
 
 
-son.component.ts
+**son.component.ts**
 ```js
 
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
