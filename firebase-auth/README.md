@@ -1,5 +1,132 @@
 # Firebase Authentication - Cookbook
 
+### Updated -  Setember 2017
+
+
+### How to Install
+
+```
+  npm i firebase angularfire2 --save
+```
+
+##### index.html 
+ps: Take it in the firebase ( WEB )
+```html
+  <script src="https://www.gstatic.com/firebasejs/3.6.ksksksksks7/firebase.js"></script>
+``` 
+
+##### app.module.ts
+```js
+
+  // firebase 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
+
+
+  
+  imports: [  AngularFireModule.initializeApp(environment.firebase) ] 
+  // Or use like this.
+  imports: [  AngularFireModule.initializeApp( firebaseConfig.firebase, 'my-app-name' ) ] 
+  
+```
+
+
+
+##### environments/firebaseconfig.ts
+```js
+
+export const environment = {
+  production: false,
+  firebase: {
+     apiKey: ' Use single quotes here...', 
+     authDomain: ' xxxxxxxxxxxxxxxxxxx ', 
+     databaseURL: ' xxxxxxxxxxxxxxxxxx  ', 
+     storageBucket: ' xxxxxxxxxxxxxxxx ',
+     messagingSenderId: ' xxxxxxxxxxx ' 
+  }
+};
+```
+
+
+1 - Firebase enable
+2 - 
+  ng g service core/auth
+  ng g component users/user-login
+  ng g component users/user-profile
+
+
+##### service.ts
+```js
+// Returns true if user is logged in
+get authenticated(): boolean {
+  return this.authState !== null;
+}
+
+// Returns current user
+get currentUser(): any {
+  return this.authenticated ? this.authState.auth : null;
+}
+
+// Returns current user UID
+get currentUserId(): string {
+  return this.authenticated ? this.authState.uid : '';
+}
+```
+
+if you  want to save your user records the firebase realtime database. It can be useful if you plan on iterating over users in your app or if you collection custom data on users. It’s can also be setup as a resuable function.
+
+```js
+private updateUserData(): void {
+  let path = `users/${this.currentUserId}`; // Endpoint on firebase
+  let data = {
+               name: this.currentUser.displayName,
+               email: this.currentUser.email,
+             }
+  this.db.object(path).update(data)
+  .catch(error => console.log(error));
+}
+```
+
+
+##### component.ts
+we are going to create a separate method for each provider. Just like in the service, we will add a reusable function called afterSignIn that will execute after the service finishes logging in the user. For now, we will just have the router to redirect the user to the home page.
+
+```js
+
+private afterSignIn(): void {
+  // Do after login stuff here, such router redirects, toast messages, etc.
+  this.router.navigate(['/']);
+}
+
+
+
+  signInWithGoogle(): void {
+    this.auth.googleLogin()
+      .then(() => this.afterSignIn());
+  }
+  ```
+
+
+  #### html
+  ```html
+  <div *ngIf="!auth.currentUser; else alreadyLoggedIn">
+<button (click)="signInWithGoogle()">
+  Connect Google
+</button>
+<ng-template #alreadyLoggedIn>
+    already logged in!
+</ng-template>
+```
+
+
+
+
+
+
+
 ### Updated -  August 2017
 
 ### How to Install
@@ -9,49 +136,11 @@
 ```
 
 
-##### app.module.ts
-```js
-  // firebase auth system
-  // import * as firebase from 'firebase/app';
-  import { AngularFireAuthModule } from 'angularfire2/auth';
-  
-
-  imports: [  AngularFireModule.initializeApp( environment.firebase, 'my-app-name' ) ] 
-  
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### Updated -  May 2017
 
 #### angularfire2 V4
 https://github.com/angular/angularfire2
-
-
-
 
 ### How to Install
 
@@ -75,7 +164,6 @@ ps: Take it in the firebase ( WEB )
   // firebase auth system
   import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
   import { firebaseConfig } from '../environments/firebaseconfig';
-
   import * as firebase from 'firebase/app';
 
   
