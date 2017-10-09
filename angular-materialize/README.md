@@ -103,6 +103,8 @@ export class AppModule { }
 
 ##### index.html
 In the index.html add the CDN of google fonts and material icons
+
+### K-> Attencion in http: x https://  security (s) is important to deploy
 ```
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
