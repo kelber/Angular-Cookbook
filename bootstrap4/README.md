@@ -3,6 +3,120 @@
 #### Ref: https://ng-bootstrap.github.io/#/getting-started
 
 
+
+### updated in October 2017 
+
+Install
+```
+npm install --save bootstrap@next
+```
+
+index.html
+import CDN's:  https://getbootstrap.com/docs/4.0/getting-started/introduction/
+
+```html
+<!--mobile-first-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+``` 
+#### _variables.scss
+copy what you want to styles.scss.
+
+styles.scss
+```css
+
+@import '~/bootstrap/dist/css/boostrap.css';
+
+$body-bg:      royalblue !default;
+$body-color:   $theme-color("primary") !default;
+
+
+@mixing anchor {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+$background-image url('/assets/car.jpg') no-repeat;
+// background-size: cover;
+
+
+@media(max-width: 575px) { ... }
+@media(min-width: 576px) { ... }
+or
+@media(min-width: 576px) and (max-width: 767px) { ... }
+
+
+
+
+// Fonts
+
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-monospace:  "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
+
+
+
+// where you will use
+
+@import '../../styles.scss';
+
+.btn {
+  @include anchor;
+}
+
+```
+### Layout
+```html
+  <div class="container"></div>
+  <div class="container-fluid">100% width</div>
+  
+<!--GRID -->
+<div class=-"row">
+  <div class="col">1coluna</div>
+  <div class="col-8">8 colunas</div>
+  
+
+<!--3 columns-->
+  <div class="col-6 col-md4">1</div>
+  <div class="col-6 col-md4">2</div>
+  <div class="col-6 col-md4">3</div>
+  
+  <!--VERTICAL ALIGN-->
+  
+  <div class="row align-items-start">Start </div>
+  <div class="row align-items-center">Center </div>
+  <div class="row align-items-end">End </div>
+  
+  <!--HORIZONTAL ALIGN-->
+  
+  <div class="row justify-content-start">Start </div>
+  <div class="row justify-content-center">Center </div>
+  <div class="row justify-content-end">End</div>
+  
+  <!--OFFSETING-->
+  <div class="col-6 col-md4">4</div>
+  <div class="col-6 col-md4 ml-auto ml-md-auto">pass 4 and put in the end 4</div>
+
+
+</div>
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### updated in August 2017 
 
 Install
