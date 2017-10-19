@@ -8,14 +8,14 @@ constructor(public meta: Meta, public title: Title) {
  this.title.setTitle('Side of Fav icon...');
  this.meta.addTags([
       { name: 'author', content: 'Kelber'},
-      { name: 'keywords', content: 'posts'},
-      { name: 'description', content: 'posts'},
+      { name: 'keywords', content: 'posts, Posts, important words'},
+      { name: 'description', content: 'A pages description,usually one or two sentences. 135 to 160 characteres' }
     ])
 
 }
 
 // Answer
-// <head> <meta name="Kelber"></meta> </head>
+// <head> <meta name="Kelber"></meta></head>
 
 
 ```
@@ -24,6 +24,7 @@ constructor(public meta: Meta, public title: Title) {
 
 #### Intro page in the index.html
 
+```html
  <app-root>
  <style>
   app-root {
@@ -77,6 +78,9 @@ constructor(public meta: Meta, public title: Title) {
   Loading<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
   </app-root>
   
+  ```
+
+
 
 
 
