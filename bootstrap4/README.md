@@ -3,6 +3,71 @@
 #### Ref: https://ng-bootstrap.github.io/#/getting-started
 
 
+### updated in Jan 2018
+Loiane Ref
+https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/
+
+Install
+```js
+npm install --save bootstrap@next
+npm --save install bootstrap@4.0.0-beta.3
+npm --save install font-awesome@latest
+
+``` 
+
+.angular-cli.json
+```js
+"styles": [
+  "../node_modules/font-awesome/css/font-awesome.css",
+  "../node_modules/bootstrap/dist/css/bootstrap.css",
+  // "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "styles.scss"
+]
+```
+
+styles.scss
+```js
+@import '~bootstrap/dist/css/bootstrap.min.css';
+```
+
+## JS
+use ngxBootstrap
+```js
+npm install ngx-bootstrap --save
+```
+Create a app-bootstrap module and put all bootstrap components
+Example:
+```js
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
+  ],
+  exports: [BsDropdownModule, TooltipModule, ModalModule]
+})
+export class AppBootstrapModule {}
+```
+# add appBootstrapModule in the appModule
+
+## ngx-bootstrap
+https://valor-software.com/ngx-bootstrap/#/
+
+Look how use the directives 
+Ex.
+```html
+button(tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.") Tooltip
+
+
+
 
 ### updated in October 2017 
 
