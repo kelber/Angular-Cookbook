@@ -16,6 +16,7 @@ npm --save install font-awesome@latest
 ``` 
 
 .angular-cli.json
+ps: May cause errors if put extensions scss. Use only css
 ```js
 "styles": [
   "../node_modules/font-awesome/css/font-awesome.css",
