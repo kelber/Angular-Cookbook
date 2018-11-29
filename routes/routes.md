@@ -2,6 +2,13 @@
 
 ### 2018 
 
+*temporary solution for error undefined*
+```js
+ { path: '**' , component: HomeComponent },
+ { path: 'home', loadChildren: './home/home.module#HomeModule' },
+
+```
+
 ## Lazy Loading
 
 Ex: About module with lazy loading
