@@ -4,6 +4,8 @@
 
 ### Updated 7 July 2019
 Maximilian Course
+
+```js
 // Select Radio Button
 
 this.signupForm = this.fb.group({
@@ -17,7 +19,9 @@ this.signupForm = this.fb.group({
       const control = new FormControl(null, Validators.required);
       ( <FormArray>this.signForm.get('hobbies')).push(control);
  }
+```
 
+```html
 // Html
 <div formArrayName="hobbies">
       <button (click)="onAddHoby()">Add Hobby</button>
@@ -26,6 +30,8 @@ this.signupForm = this.fb.group({
       </div>
       
 </div>
+
+```
 
 
 ### Updated September 2017
