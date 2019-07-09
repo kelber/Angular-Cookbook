@@ -73,18 +73,17 @@ Receive the informations and here have the HTML tags and details...
 **son.html**
 ```html
 
-  <div class="form-group" >
-    <div class="has-success" [class.has-success]="hasSuccess()">
-    <label>{{ label }} </label>
+ <div class="form-group" >
+    <div class="has-success" [class.has-success]="hasSuccess()"><label>{{ label }} </label>
     
         <!--here receive the <input />-->
         <ng-content></ng-content>  
-        
-
+    
     <div *ngIf="hasSuccess()" class="form-control-feedback">Ok</div>
-    <small *ngIf="hasError()" class="form-text text-muted">{{ errorMessage }}</small>
+    <small *ngIf="hasError()" [class.has-error]="hasError()">{{ errorMessage }}</small>
     </div>
   </div>
+
 
 ``` 
 
