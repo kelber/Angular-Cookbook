@@ -89,6 +89,27 @@ forbiddenEmails(control: FormControl): Promise<any> | Observable<any>  {
 ```
 
 
+### Value Changes e Patching Changes
+
+// dentro do ngOnInit() {}
+
+.valueChanges    // Object
+.statusChanges   // resp. INVALID
+.patch
+
+this.signupForm.valueChanges.subscribe( value => {
+      console.log(value);
+});
+
+
+// vc pode limpar no final
+this.signupForm.reset();
+
+
+
+
+```
+
 
 ### Updated September 2017
 
