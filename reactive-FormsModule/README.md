@@ -47,11 +47,46 @@ forbiddenNames(control: FormControl): { [s: string]: boolean } {
 'username': [Validators.required, this.forbiddenNames.bind(this) ] <-- precisa do .bind(this)
  
 
+```
 
+### Especificando erros
+```js
+// Ex: campo username
+
+<span *ngIf="signupForm.get('userData.username').errors['nameIsForbidden']">This name is insvalid</span>
+<span *ngIf="signupForm.get('userData.username').errors['required']">This name is required</span>
+
+
+// busque no console.log errors field
 
 ```
 
 
+#### Async Validators
+// Resposta vem do servidor e não local
+
+```js
+// Async validator
+
+forbiddenEmails(control: FormControl): Promise<any> | Observable<any>  {
+      const promise = new Promise<any>(resolve, reject) => {
+      setTimeout(() => {
+            if(control.value === 'test@test@gmail.com') {
+                  resolve({'emailIsForbidden': true});
+            } else {
+                  resolve(null);
+             }      
+      },1500);
+      });
+      return promise;
+}
+
+// no fbuilder nao passe na listagem de Validators
+'email': ['', [Validators.required, Validators.email],  this.forbiddenEmails ]
+
+// com async aparece a classe ng-pending entre os "estados"
+
+```
 
 
 
