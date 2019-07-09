@@ -30,24 +30,28 @@ Pass all the fields to Son Component and in the son have the HTML tags and detai
 ```html
 <p> {{ evaluationForm?.value | json }} and {{ evaluationForm?.valid }} </p>
 
+
+
 <form [formGroup]="evaluationForm" novalidate>
 
-
-      <app-form-input label="Vehicle"
-                      errorMessage="Mandatory field">
-                      
-            <!--in the son component will replace for the <ng-content></ng-content> -->
-              <input type="text" class="form-control"
-                    placeholder="Vehicle"
-                    formControlName="vehicle">
-
-      </app-form-input>
+      <app-input label="Vehicle" errorMessage="Mandatory field">
+            <!--in the SON component will replace for the <ng-content></ng-content> -->
+            <input type="text"
+               class="form-control"
+               placeholder="Vehicle"
+               formControlName="vehicle">
+      </app-input>
       
  </form>
  
-  <button type="submit" class="btn btn-primary btn-block"
-      [disabled]="!evaluationForm.valid"
-      (click)="onSubmit(evaluationForm)">Submit</button>
+  <button type="submit" 
+          class="btn btn-primary btn-block"
+          [disabled]="!evaluationForm.valid"
+         (click)="onSubmit(evaluationForm)">
+    Submit
+  </button>
+
+
 ```
 
 **father.component.ts**
