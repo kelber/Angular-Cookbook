@@ -91,6 +91,7 @@ forbiddenEmails(control: FormControl): Promise<any> | Observable<any>  {
 
 ### Value Changes e Patching Changes
 
+```js
 // dentro do ngOnInit() {}
 
 .valueChanges    // Object
