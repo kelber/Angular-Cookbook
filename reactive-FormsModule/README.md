@@ -38,7 +38,7 @@ this.signupForm = this.fb.group({
 forbidenUsernames = ['Chris', 'Anna'];
 
 forbiddenNames(control: FormControl): { [s: string]: boolean } {
-      if(this.forbiddenUsername.indexOf(control.value)) {
+      if(this.forbiddenUsername.indexOf(control.value) !== -1 ) {
             return { 'nameIsForbidden': true};
       } 
             return null;   // don´t return nothing. just null}
