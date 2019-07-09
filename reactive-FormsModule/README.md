@@ -2,6 +2,32 @@
 # Reactive FormsModule - Model Driven
 
 
+### Updated 7 July 2019
+Maximilian Course
+// Select Radio Button
+
+this.signupForm = this.fb.group({
+      'userData': {
+            'username': [ ],
+       },
+       'hobbies': new FormArray( [] )
+ });
+ 
+ onAddHoby() {
+      const control = new FormControl(null, Validators.required);
+      ( <FormArray>this.signForm.get('hobbies')).push(control);
+ }
+
+// Html
+<div formArrayName="hobbies">
+      <button (click)="onAddHoby()">Add Hobby</button>
+      <div *ngFor="let hobbyControl of signForm.get('hobbies').controls; let i = index">
+          <input type="text" class="form-control" [formControlName]="i" >
+      </div>
+      
+</div>
+
+
 ### Updated September 2017
 
 import the FormsModule, ReactiveFormsModule in the SharedModule
