@@ -32,6 +32,27 @@ this.signupForm = this.fb.group({
 </div>
 
 ```
+#### Custom Validators
+
+```js
+forbidenUsernames = ['Chris', 'Anna'];
+
+forbiddenNames(control: FormControl): { [s: string]: boolean } {
+      if(this.forbiddenUsername.indexOf(control.value)) {
+            return { 'nameIsForbidden': true};
+      } 
+            return null;   // don´t return nothing. just null}
+
+// and now put in Validators
+'username': [Validators.required, this.forbiddenNames.bind(this) ] <-- precisa do .bind(this)
+ 
+
+
+
+```
+
+
+
 
 
 ### Updated September 2017
